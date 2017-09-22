@@ -5,16 +5,16 @@
 
 
 // Initialize angular app
-var spammer = angular.module('DiscordSpammer', []);
+var postApp = angular.module('imgposter', []);
 // Init config
-spammer.config(function($httpProvider) {
+postApp.config(function($httpProvider) {
 
   delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
 });
 
 // Init controller
-spammer.controller('spamController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
+postApp.controller('postController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
 
 // Basic info surrounding Danbooru API and queries to do with said API
   $scope.dan_info = {
