@@ -1,0 +1,69 @@
+<!DOCTYPE html charset="utf8">
+
+
+<head>
+	<!-- SCRIPTS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
+	<script src="./main.js"></script>
+
+	<!-- NOT SCRIPTS -->
+
+	<style>
+	input {margin: 10px !important;}
+	</style>
+
+	<title>Multi-Image Poster</title>
+
+</head>
+
+<body ng-app="DiscordSpammer" ng-controller="spamController" style="display: flex; flex-direction: row; margin: 10px;">
+	
+<!-- CONTROLLING DIV -->
+
+	<div style="width: 50vw;">
+
+		<br>
+
+		<input ng-model="dis_info.channel" placeholder="channel (id)">
+
+		<br>
+
+		<input ng-model="dan_info.tag" placeholder="tag (from danbooru tag api)">
+
+		<br>
+
+		<input ng-model="dan_info.limit" placeholder="# of images (not over 25)"><span ng-if="dan_info.limit>25">image # too high</span>
+
+		<br>
+
+		<input ng-model="post.headers.authorization" placeholder="authorization">
+
+		<br>
+
+		<button ng-click="populate()">submit</button>
+
+		<br>
+
+		{{query}}
+
+		<br>
+
+		<button ng-click="disPost()">post pictures</button>
+	
+	</div>
+
+	<!-- PREVIEW DIV -->
+
+	<div class="preview" style="display: flex; flex-direction: row; flex-wrap: wrap; width: 50vw;">
+
+		<div class="single" ng-repeat="post in retreived" style="width: 200px; height: 200px; margin: 0px; align-items: center; justify-content: center;">
+
+			<a ng-href="{{post.url}}"><img style="max-width: 100%;" ng-src="{{post.preview}}">
+
+
+		</div>
+
+	</div>
+
+</body>
