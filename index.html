@@ -10,54 +10,117 @@
 	<!-- NOT SCRIPTS -->
 
 	<style>
-	input {margin: 10px !important;}
+
+	@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700');
+
+	body {
+		display: flex; 
+		flex-direction: row; 
+		margin: 0px !important;
+		font-family: 'Montserrat', sans-serif;
+	}
+
+	input, button{
+		transition: 0.5s;
+		width: 300px;
+		height: 35px;
+		border-radius: 17.5px;
+		border: solid 1px #ecf0f1;
+		font-size: 15px;
+		padding: 5px 10px;
+		font-family: 'Montserrat', sans-serif;
+		font-weight: 300;
+		text-decoration: none;
+		outline: none;
+	}
+
+	button {
+		font-weight: 400;
+	}
+
+	input:hover {
+		transition: 0.5s;
+		border: solid 1.5px #bdc3c7;
+	}
+
+	button:hover {
+		transition: 0.05s;
+		border: solid 1px #3498db
+	}
+
+	button:active {
+		background-color: 
+	}
+
+	input:focus{
+		transition: 0.1s;
+		border: solid 1px #3498db;
+	}
+
+	.preview {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap; 
+		width: 50vw;
+	}
+
+	.split-vert {
+		width: 50%;
+		padding: 50px;
+	}
+	
+	.m10 {
+		margin: 10px;
+	}
+
+
 	</style>
 
 	<title>Multi-Image Poster</title>
 
 </head>
 
-<body ng-app="imgposter" ng-controller="postController" style="display: flex; flex-direction: row; margin: 10px;">
+<body ng-app="imgposter" ng-controller="postController">
 	
 <!-- CONTROLLING DIV -->
 
-	<div style="width: 50vw;">
+	<div class="split-vert">
 
 		<br>
 
-		<input ng-model="dis_info.channel" placeholder="channel (id)">
+		<input class="m10" ng-model="dis_info.channel" placeholder="channel (id)">
 
 		<br>
 
-		<input ng-model="dan_info.tag" placeholder="tag (from danbooru tag api)">
+		<input class="m10" ng-model="dan_info.tag" placeholder="tag (from danbooru tag api)">
 
 		<br>
 
-		<input ng-model="dan_info.limit" placeholder="# of images (not over 25)"><span ng-if="dan_info.limit>25">image # too high</span>
+		<input class="m10" ng-model="dan_info.limit" placeholder="# of images (not over 25)"><span ng-if="dan_info.limit>25">image # too high</span>
 
 		<br>
 
-		<input ng-model="post.headers.authorization" placeholder="authorization">
+		<input class="m10" ng-model="post.headers.authorization" placeholder="authorization">
 
 		<br>
 
-		<button ng-click="populate()">submit</button>
+		<button class="m10" ng-click="populate()">Submit</button>
 
 		<br>
 
-		{{query}}
+		<span class="m10">{{query}}</span>
 
 		<br>
 
-		<button ng-click="disPost()">post pictures</button>
+		<button class="m10" ng-click="disPost()">Post Pictures</button>
 	
 	</div>
 
 	<!-- PREVIEW DIV -->
 
-	<div class="preview" style="display: flex; flex-direction: row; flex-wrap: wrap; width: 50vw;">
+	<div class="preview">
 
-		<div class="single" ng-repeat="post in retreived" style="width: 200px; height: 200px; margin: 0px; align-items: center; justify-content: center;">
+		<div class="single" ng-repeat="post in retreived">
 
 			<a ng-href="{{post.url}}"><img style="max-width: 100%;" ng-src="{{post.preview}}">
 

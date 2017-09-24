@@ -9,7 +9,7 @@ var postApp = angular.module('imgposter', []);
 // Init config
 postApp.config(function($httpProvider) {
 
-  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+//  delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
 });
 
@@ -98,7 +98,7 @@ postApp.controller('postController', ['$scope', '$http', '$timeout', function($s
           };
 
 // Danbooru's objects return unfinished uris, ex. /data/123.jpg instead of danbooru.donmai.net/data/123.jpg
-// This next step simply changes the value of the variable temp, and adds $scope.dan_info.url so the result is a web-accessible uri
+// This next step simply changes the value of the data in variable temp, and adds $scope.dan_info.url so the result is a web-accessible uri
           temp.url = $scope.dan_info.url + value.file_url;
           temp.preview = $scope.dan_info.url + value.preview_file_url;
           temp.md5 = value.md5;
