@@ -14,7 +14,7 @@ postApp.config(function($httpProvider) {
 });
 
 // Init controller
-postApp.controller('postController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
+postApp.controller('postController', ['$scope', '$http', function($scope, $http) {
 
 // Basic info surrounding Danbooru API and queries to do with said API
   $scope.dan_info = {
@@ -30,7 +30,8 @@ postApp.controller('postController', ['$scope', '$http', '$timeout', function($s
 // Basic Discord Info
 // Channel needs value
   $scope.dis_info = {
-    channel: ''
+    channel: '',
+    auth: ''
   }
 
   $scope.post = {
@@ -42,7 +43,7 @@ postApp.controller('postController', ['$scope', '$http', '$timeout', function($s
     headers: {
       "x-super-properties": "",
       "accept-language": "en-US",
-      "authorization": "",
+      "authorization": $scope.dis_info.auth,
       "content-type": "application/json",
       "accept": "*/*",
     },
@@ -123,5 +124,21 @@ postApp.controller('postController', ['$scope', '$http', '$timeout', function($s
 //console log on next line is simply confirmation that each individual post went through successfully
       $http($scope.post).then(function() {console.log('post successful')});
     });
+  };
+
+  $scope.setCookie = function(cookie) {
+    if(cookie == 'channel') {
+      var cookie = 'channel=' + $scope.dis_info.channel;
+      document.cookie = cookie;
+      alert('channel has been set to ' + cookie);
+      console.log(document.cookie);
+    };
+
+    if(cookie == 'auth') {
+      var cookie = 'authorization=' + $scope.dis_info.auth;
+      document.cookie = cookie;
+      alert('auth has been set to ' + cookie);
+      console.log(document.cookie);
+    };
   };
 }]);

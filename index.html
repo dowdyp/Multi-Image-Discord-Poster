@@ -21,8 +21,7 @@
 	}
 
 	input, button{
-		transition: 0.5s;
-		width: 300px;
+		transition: 0.3s;
 		height: 35px;
 		border-radius: 17.5px;
 		border: solid 1px #ecf0f1;
@@ -44,8 +43,8 @@
 	}
 
 	button:hover {
-		transition: 0.05s;
-		border: solid 1px #3498db
+		transition: 0.1s;
+		background-color: #bdc3c7;
 	}
 
 	button:active {
@@ -73,6 +72,18 @@
 		margin: 10px;
 	}
 
+	.w300 {
+		width: 300px;
+	}
+
+	.single {
+		margin: 10px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
 
 	</style>
 
@@ -88,19 +99,19 @@
 
 		<br>
 
-		<input class="m10" ng-model="dis_info.channel" placeholder="channel (id)">
+		<input class="m10 w300" ng-model="dis_info.channel" placeholder="Channel (id)"><button ng-click="setCookie('channel')">Save</button>
 
 		<br>
 
-		<input class="m10" ng-model="dan_info.tag" placeholder="tag (from danbooru tag api)">
+		<input class="m10 w300" ng-model="dan_info.tag" placeholder="Tag (from danbooru tag api)">
 
 		<br>
 
-		<input class="m10" ng-model="dan_info.limit" placeholder="# of images (not over 25)"><span ng-if="dan_info.limit>25">image # too high</span>
+		<input class="m10 w300" ng-model="dan_info.limit" placeholder="# of images (not over 25)"><span ng-if="dan_info.limit>25">image # too high</span>
 
 		<br>
 
-		<input class="m10" ng-model="post.headers.authorization" placeholder="authorization">
+		<input class="m10 w300" ng-model="dis_info.auth" placeholder="Authorization"><button ng-click="setCookie('auth')">Save</button>
 
 		<br>
 
@@ -122,8 +133,9 @@
 
 		<div class="single" ng-repeat="post in retreived">
 
-			<a ng-href="{{post.url}}"><img style="max-width: 100%;" ng-src="{{post.preview}}">
+			<a ng-href="{{post.url}}"><img style="max-width: 100%;" ng-src="{{post.preview}}"></a>
 
+			<span style="font-size: 6px;">{{post.md5}}</span>
 
 		</div>
 
